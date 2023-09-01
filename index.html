@@ -40,6 +40,31 @@
           </li>
         </ul>
       </nav>
+      <div class="animation-toggle-section">
+        <input
+          type="checkbox"
+          id="animation-toggle"
+          class="toggle-input"
+          onclick="toggle()"
+        />
+        <label for="animation-toggle" class="toggle-label">
+          Allow animation
+          <span class="switch"></span>
+        </label>
+      </div>
     </header>
+
+    <script>
+      let allowAnimate = window.matchMedia(
+        "(prefers-reduced-motion: no-preference)"
+      ).matches;
+      document.getElementById("animation-toggle").checked = allowAnimate;
+      function toggle() {
+        allowAnimate = !allowAnimate;
+        document.querySelector("body").className = allowAnimate
+          ? "allowAnimate"
+          : "denyAnimate";
+      }
+    </script>
   </body>
 </html>

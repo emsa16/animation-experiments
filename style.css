@@ -50,3 +50,73 @@ body {
   transition-duration: 0.4s;
   transition-delay: 0.2s;
 }
+
+.animation-toggle-section {
+  display: flex;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.toggle-input {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.switch {
+  width: 3em;
+  height: 1.5em;
+  background-color: grey;
+  display: inline-block;
+  border-radius: 1.5em;
+  position: relative;
+  /* transition: background-color 0.3s; TODO funkar bara när switchar på */
+}
+
+.switch:after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 45%;
+  height: 90%;
+  background: #fff;
+  border-radius: 1.35em;
+  transition: all 0.3s;
+}
+
+.toggle-input:checked + .toggle-label .switch {
+  background-color: #bada55;
+}
+
+.toggle-input:checked + .toggle-label .switch:after {
+  left: 95%; /* Allowing animation of position, to be able to add width on left-hand side when active */
+  transform: translateX(-100%);
+}
+
+.switch:active:after {
+  width: 1.95em; /* Allowing animation of width, as scaling does not work due the rounded borders on element */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.allowAnimate) * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+.denyAnimate * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+  animation-delay: 0s !important;
+  transition-delay: 0s !important;
+}
