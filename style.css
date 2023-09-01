@@ -105,6 +105,49 @@ body {
   width: 1.95em; /* Allowing animation of width, as scaling does not work due the rounded borders on element */
 }
 
+.heart {
+  width: 100px;
+}
+
+.heart path {
+  transform-origin: 50% 50%;
+  fill: transparent;
+  stroke: black;
+  stroke-width: 25px;
+  transition: fill, stroke;
+}
+
+.heart:hover path {
+  animation-name: throb;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  /* weird anti-aliasing change when hovering */
+}
+
+.heart path.hearted {
+  fill: red;
+  stroke: darkred;
+  /* transform: scale(1.20); */
+  transition-duration: 0.3s;
+  /* transition-timing-function: cubic-bezier(.81,.12,.66,1.89); */
+}
+
+@keyframes throb {
+  from,
+  15%,
+  28%,
+  45%,
+  58%,
+  to {
+    transform: scale(1);
+  }
+
+  20%,
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body:not(.allowAnimate) * {
     animation-duration: 0s !important;

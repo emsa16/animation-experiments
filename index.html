@@ -66,6 +66,16 @@
       UI animations need to be subtle but meaningful, thoughtful, delightful
     </p>
 
+    <svg
+      onclick="handleHeartClick()"
+      class="heart"
+      viewBox="-75 -75 620.701 596.701"
+    >
+      <path
+        d="M140 20C73 20 20 74 20 140c0 135 136 170 228 303 88-132 229-173 229-303 0-66-54-120-120-120-48 0-90 28-109 69-19-41-60-69-108-69z"
+      />
+    </svg>
+
     <script>
       let allowAnimate = window.matchMedia(
         "(prefers-reduced-motion: no-preference)"
@@ -76,6 +86,15 @@
         document.querySelector("body").className = allowAnimate
           ? "allowAnimate"
           : "denyAnimate";
+      }
+
+      function handleHeartClick() {
+        const heart = document.querySelector(".heart path");
+        if (heart.classList.contains("hearted")) {
+          heart.classList.remove("hearted");
+        } else {
+          heart.classList.add("hearted");
+        }
       }
     </script>
   </body>
